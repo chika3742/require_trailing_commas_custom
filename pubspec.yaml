@@ -1,0 +1,15 @@
+name: require_trailing_commas_custom
+description: A modified lint rule of require_trailing_commas
+version: 1.0.0
+repository: https://github.com/chika3742/require_trailing_commas_custom
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  analyzer: ^7.3.0
+  analyzer_plugin: ^0.12.0
+  custom_lint_builder: ^0.7.3
+
+dev_dependencies:
+  lints: ^5.0.0

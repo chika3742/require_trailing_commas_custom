@@ -1,0 +1,9 @@
+name: trailing_comma_lint_test
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  trailing_comma_lint:
+    path: ../
+  custom_lint: ^0.7.3
