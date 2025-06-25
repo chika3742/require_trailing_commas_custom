@@ -1,6 +1,6 @@
 name: require_trailing_commas_custom
 description: A modified lint rule of require_trailing_commas
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/chika3742/require_trailing_commas_custom
 
 environment:
