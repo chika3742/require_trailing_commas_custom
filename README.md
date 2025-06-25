@@ -1,8 +1,8 @@
 # require_trailing_commas_custom
 
-lint rule for custom_lint
+A lint rule for [custom_lint](https://pub.dev/packages/custom_lint)
 
-**The rule is simple.** If you opened parentheses intending to write multiline contents, it requires trailing commas.
+**The rule is simple.** If you opened parentheses intending to write multiline contents, it requires trailing commas. It's like `always-multiline`setting of `comma-dangle` rule in ESLint.
 
 ### ✅ Good
 ```dart
@@ -40,14 +40,14 @@ useEffect(
   [] // <-
 );
 ```
-Records supported
+Records are supported
 ```dart
 final (String, String) foo = (
   "bar",
   "baz" // <-
 );
 ```
-Switch expressions supported
+Switch expressions are supported
 ```dart
 final foo = switch (state) {
   State.success => 0,
@@ -55,7 +55,7 @@ final foo = switch (state) {
 }
 ```
 
-Enums supported
+Enums are supported
 ```dart
 enum FooState {
   bar,
@@ -71,4 +71,26 @@ enum BarState {
 
   final String name;
 }
+```
+
+Of course, also have quick fixes.
+
+## Installation
+
+Add this package to the dependency. [custom_lint](https://pub.dev/packages/custom_lint) package is required to
+use this lint rule.
+
+```sh
+dart pub add dev:require_trailing_commas_custom dev:custom_lint
+# or
+flutter pub add dev:require_trailing_commas_custom dev:custom_lint
+```
+
+`analysis_options.yaml`
+```yaml
+# ...
+analyzer:
+  plugins:
+    - custom_lint
+# ...
 ```
