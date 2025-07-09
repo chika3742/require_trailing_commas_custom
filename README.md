@@ -77,20 +77,25 @@ Of course, also have quick fixes.
 
 ## Installation
 
-Add this package to the dependency. [custom_lint](https://pub.dev/packages/custom_lint) package is required to
+Just add this package to your dependencies. [custom_lint](https://pub.dev/packages/custom_lint) package is required to
 use this lint rule.
 
-```sh
+```shell
 dart pub add dev:require_trailing_commas_custom dev:custom_lint
 # or
 flutter pub add dev:require_trailing_commas_custom dev:custom_lint
 ```
 
-`analysis_options.yaml`
+If you're using an IDE like VSCode, edit your `analysis_options.yaml` like this:
 ```yaml
 # ...
 analyzer:
   plugins:
     - custom_lint
 # ...
+```
+
+Running the linter with command line:
+```shell
+dart run custom_lint
 ```
