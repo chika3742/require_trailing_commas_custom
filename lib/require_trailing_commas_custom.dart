@@ -135,9 +135,7 @@ class _TrailingCommaLintRule extends DartLintRule {
   }
 
   @override
-  List<Fix> getFixes() => [
-    _TrailingCommaFix(),
-  ];
+  List<Fix> getFixes() => [_TrailingCommaFix()];
 }
 
 class _TrailingCommaChecker {
@@ -169,7 +167,7 @@ class _TrailingCommaChecker {
 
   bool _isSameLine(Token token1, Token token2) =>
       lineInfo.getLocation(token1.offset).lineNumber ==
-          lineInfo.getLocation(token2.end).lineNumber;
+      lineInfo.getLocation(token2.end).lineNumber;
 
   /// Returns `true` if the opening and closing tokens are on different lines
   /// than the child nodes.
@@ -197,12 +195,11 @@ class _TrailingCommaFix extends DartFix {
     List<AnalysisError> others,
   ) {
     void createAddTrailingCommaFix(Token previousToken) {
-      reporter.createChangeBuilder(
-        message: "Add a trailing comma",
-        priority: 1,
-      ).addDartFileEdit((builder) {
-        builder.addSimpleInsertion(previousToken.end, ",");
-      });
+      reporter
+          .createChangeBuilder(message: "Add a trailing comma", priority: 1)
+          .addDartFileEdit((builder) {
+            builder.addSimpleInsertion(previousToken.end, ",");
+          });
     }
 
     context.registry
@@ -219,8 +216,13 @@ class _TrailingCommaFix extends DartFix {
         createAddTrailingCommaFix(node.rightParenthesis.previous!);
       })
       ..addFormalParameterList((node) {
-        if (analysisError.offset != (node.rightDelimiter ?? node.rightParenthesis).offset) return;
-        createAddTrailingCommaFix((node.rightDelimiter ?? node.rightParenthesis).previous!);
+        if (analysisError.offset !=
+            (node.rightDelimiter ?? node.rightParenthesis).offset) {
+          return;
+        }
+        createAddTrailingCommaFix(
+          (node.rightDelimiter ?? node.rightParenthesis).previous!,
+        );
       })
       ..addListLiteral((node) {
         if (analysisError.offset != node.rightBracket.offset) return;
@@ -239,7 +241,10 @@ class _TrailingCommaFix extends DartFix {
         createAddTrailingCommaFix(node.rightParenthesis.previous!);
       })
       ..addRecordTypeAnnotation((node) {
-        if (analysisError.offset != (node.namedFields?.rightBracket ?? node.rightParenthesis).offset) return;
+        if (analysisError.offset !=
+            (node.namedFields?.rightBracket ?? node.rightParenthesis).offset) {
+          return;
+        }
         createAddTrailingCommaFix(
           (node.namedFields?.rightBracket ?? node.rightParenthesis).previous!,
         );
@@ -249,9 +254,13 @@ class _TrailingCommaFix extends DartFix {
         createAddTrailingCommaFix(node.rightBracket.previous!);
       })
       ..addEnumDeclaration((node) {
-        if (analysisError.offset != (node.semicolon ?? node.rightBracket).offset) return;
-        createAddTrailingCommaFix((node.semicolon ?? node.rightBracket).previous!);
-      })
-    ;
+        if (analysisError.offset !=
+            (node.semicolon ?? node.rightBracket).offset) {
+          return;
+        }
+        createAddTrailingCommaFix(
+          (node.semicolon ?? node.rightBracket).previous!,
+        );
+      });
   }
 }
