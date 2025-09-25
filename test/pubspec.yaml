@@ -6,4 +6,4 @@ environment:
 dependencies:
   require_trailing_commas_custom:
     path: ../
-  custom_lint: ^0.8.0
+  custom_lint: ^0.8.1
